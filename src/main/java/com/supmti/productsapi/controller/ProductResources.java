@@ -42,5 +42,11 @@ public class ProductResources {
     {
         productServiceInterface.deleteProductById(product_id);
     }
-   
+    @PostMapping("/product")
+    private Product saveProduct(@RequestBody Product product)
+    {
+        productServiceInterface.addProduct(product);
+        return product;
+    }
+
 }
