@@ -1,13 +1,13 @@
-package com.supmti.prodcutsspringrest;
+package com.supmti.productsapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProdcutsSpringRestApplicationTests {
+class ProductsApiApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
