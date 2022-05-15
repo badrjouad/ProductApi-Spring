@@ -26,5 +26,15 @@ public class ProductServiceImpl implements ProductServiceInterface {
         return productDAO.findById(id);
     }
 
+    @Override
+    public void deleteProductById(Long id) {
+        productDAO.deleteById(id);
+    }
+
+    @Override
+    public Product addProduct(Product product) {
+        return  productDAO.save(product);
+    }
+
 
 }
