@@ -37,5 +37,10 @@ public class ProductResources {
     {
         return productServiceInterface.finProductById(product_id);
     }
+    @DeleteMapping("/product/{product_id}")
+    private void deleteProduct(@PathVariable("product_id") Long product_id)
+    {
+        productServiceInterface.deleteProductById(product_id);
+    }
    
 }
