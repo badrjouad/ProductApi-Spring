@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity
                 .authorizeHttpRequests()
-                .antMatchers("/api**").hasRole("ADMIN");
+                .antMatchers("delete/**","get**/**").hasRole("USER");
 
         httpSecurity
                 .authorizeHttpRequests()
