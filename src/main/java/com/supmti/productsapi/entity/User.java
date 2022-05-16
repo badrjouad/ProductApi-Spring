@@ -11,11 +11,18 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name="Users")
+public class User {
+
 
     @Id
-    private Long id_product;
-    private String designation;
-    private double price;
+    private int id;
+    private String userName;
+    private String password;
+    private String role;
+
+
+    public User() {
+
+    }
 }

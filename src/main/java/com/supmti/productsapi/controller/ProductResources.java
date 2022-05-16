@@ -25,25 +25,25 @@ public class ProductResources {
     }
 
 
-    @GetMapping(value = "/list")
-    public ResponseEntity doGet() throws Exception {
+    @GetMapping(value = "/getAll")
+    public ResponseEntity get() throws Exception {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.getAllProducts());
 
     }
 
-    @GetMapping("/product/{product_id}")
+    @GetMapping("/get/{product_id}")
     private Optional<Product> getById(@PathVariable("product_id") Long product_id)
     {
         return productServiceInterface.finProductById(product_id);
     }
-    @DeleteMapping("/product/{product_id}")
-    private void deleteProduct(@PathVariable("product_id") Long product_id)
+    @DeleteMapping("/delete/{product_id}")
+    private void delete(@PathVariable("product_id") Long product_id)
     {
         productServiceInterface.deleteProductById(product_id);
     }
-    @PostMapping("/product")
-    private Product saveProduct(@RequestBody Product product)
+    @PostMapping("/save")
+    private Product save(@RequestBody Product product)
     {
         productServiceInterface.addProduct(product);
         return product;
