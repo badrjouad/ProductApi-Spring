@@ -2,10 +2,12 @@ package com.supmti.productsapi.service.impl;
 
 import com.supmti.productsapi.dao.ProductDAO;
 import com.supmti.productsapi.entity.Product;
+import com.supmti.productsapi.entity.dto.ProductDTO;
 import com.supmti.productsapi.service.api.ProductServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +19,11 @@ public class ProductServiceImpl implements ProductServiceInterface {
 
 
     @Override
-    public List<Product> getAllProducts() {
-        return productDAO.findAll();
+    public List<ProductDTO> getAllProducts() {
+
+            List<ProductDTO> productDTOS =new ArrayList<ProductDTO>();
+            return  productDTOS;
+
     }
 
     @Override

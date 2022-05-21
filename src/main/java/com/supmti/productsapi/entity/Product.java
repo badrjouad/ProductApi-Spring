@@ -18,4 +18,5 @@ public class Product {
     private Long id_product;
     private String designation;
     private double price;
+    private double ventes;
 }

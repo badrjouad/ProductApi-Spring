@@ -9,20 +9,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
+   /* @Override
     protected  void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.formLogin();
 
         httpSecurity
                 .authorizeHttpRequests()
-                .antMatchers("delete/**","get**/**").hasRole("USER");
+                .antMatchers("delete/**","get*").hasRole("USER");
 
         httpSecurity
                 .authorizeHttpRequests()
                 .anyRequest()
                 .authenticated();
     }
-
+*/
     @Override
     protected  void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.inMemoryAuthentication()
