@@ -47,10 +47,7 @@ public class ProductServiceImpl implements ProductServiceInterface {
 
     @Override
     public ProductDTO add(ProductDTO productDTO) throws Exception {
-        if(productDTO.getQuantity()<1)
-        {
-            throw new Exception("Quantity must be greater than zero");
-        }
+        
 
         ProductMapper productMapper = Selma.builder(ProductMapper.class).build();
 
