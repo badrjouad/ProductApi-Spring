@@ -1,4 +1,4 @@
-package com.supmti.productsapi.entity.dto;
+package com.supmti.productsapi.dto;
 
 import lombok.Data;
 import lombok.Getter;

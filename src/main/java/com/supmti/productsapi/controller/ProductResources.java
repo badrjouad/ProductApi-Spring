@@ -2,7 +2,7 @@ package com.supmti.productsapi.controller;
 
 
 import com.supmti.productsapi.entity.Product;
-import com.supmti.productsapi.entity.dto.ProductDTO;
+import com.supmti.productsapi.dto.ProductDTO;
 import com.supmti.productsapi.service.api.ProductServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,10 +45,10 @@ public class ProductResources {
         productServiceInterface.deleteProductById(product_id);
     }
     @PostMapping("/product")
-    private Product save(@RequestBody Product product)
+    private ProductDTO save(@RequestBody ProductDTO productDTO)
     {
-        productServiceInterface.addProduct(product);
-        return product;
+        productServiceInterface.addProduct(productDTO);
+        return productDTO;
     }
 
 }

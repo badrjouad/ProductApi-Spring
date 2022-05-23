@@ -1,4 +1,4 @@
 package com.supmti.productsapi.dao;
 
-public interface UserDAO {
+public interface UserRepository {
 }

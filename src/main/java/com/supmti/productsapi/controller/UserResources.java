@@ -3,7 +3,7 @@ package com.supmti.productsapi.controller;
 import org.springframework.stereotype.Controller;
 
 @Controller
-class UserController {
+class UserResources {
 
 
 

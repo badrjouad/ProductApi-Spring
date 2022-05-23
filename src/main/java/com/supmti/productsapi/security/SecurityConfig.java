@@ -2,14 +2,12 @@ package com.supmti.productsapi.security;
 
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-   /* @Override
+public class SecurityConfig {
+/*
+    @Override
     protected  void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.formLogin();
 
@@ -22,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated();
     }
-*/
+
     @Override
     protected  void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.inMemoryAuthentication()
@@ -43,4 +41,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN");
 
     }
+
+*/
 }

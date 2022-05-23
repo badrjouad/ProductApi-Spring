@@ -15,8 +15,13 @@ import javax.persistence.Table;
 public class Product {
 
     @Id
-    private Long id_product;
+    private Long id;
     private String designation;
     private double price;
     private double ventes;
+    private int quantity;
+    private String description;
+    private String utilisation;
+    private int rating;
+    private boolean inStock;
 }
