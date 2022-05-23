@@ -11,4 +11,5 @@ public class ProductDTO {
     private Long id;
     private String designation;
     private double price;
+    private int quantity;
 }

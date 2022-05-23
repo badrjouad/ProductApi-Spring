@@ -20,34 +20,55 @@ public class ProductServiceImpl implements ProductServiceInterface {
 
 
     @Override
-    public List<ProductDTO> getAllProducts() {
+    public List<ProductDTO> get() {
 
-        //Build Product Mapper
+
         ProductMapper productMapper = Selma.builder(ProductMapper.class).build();
 
-        //Clone Result list of Entity product  to list of product Dto and retutn it
+        // as product DTO list
         return  productMapper.asProductDTO(productRepository.findAll());
 
     }
 
     @Override
-    public Optional<Product> finProductById(Long id) {
+    public Optional<Product> find(Long id) {
         return productRepository.findById(id);
     }
 
     @Override
-    public void deleteProductById(Long id) {
-        productRepository.deleteById(id);
+    public void delete(Long id) throws Exception {
+        Product product = productRepository.getById(id) ;
+        if (product== null)
+        {
+            throw new Exception("Product not found");
+        }
+        productRepository.delete(product);
     }
 
     @Override
-    public ProductDTO addProduct(ProductDTO productDTO) {
-        //Build Product Mapper
+    public ProductDTO add(ProductDTO productDTO) throws Exception {
+        if(productDTO.getQuantity()<1)
+        {
+            throw new Exception("Quantity must be greater than zero");
+        }
+
         ProductMapper productMapper = Selma.builder(ProductMapper.class).build();
 
-        //Clone product Dto Request to product Entity
+        // as product DTO object
         Product product = productMapper.asProduct(productDTO);
-        //Clone Result product Entity to product Dto and retutn it
+
+        return  productMapper.asProductDTO(productRepository.saveAndFlush(product));
+    }
+
+    @Override
+    public ProductDTO update(ProductDTO productDTO) throws Exception {
+
+        ProductMapper productMapper = Selma.builder(ProductMapper.class).build();
+
+        // as product DTO object
+        Product product = productMapper.asProduct(productDTO);
+
+
         return  productMapper.asProductDTO(productRepository.save(product));
     }
 

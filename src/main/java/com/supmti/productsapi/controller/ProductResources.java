@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/v1/products")
 public class ProductResources {
 
     @Autowired
@@ -30,25 +31,39 @@ public class ProductResources {
     @GetMapping()
     public ResponseEntity<List<ProductDTO>> get() throws Exception {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.getAllProducts());
+        return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.get());
 
     }
 
     @GetMapping("/{product_id}")
     private Optional<Product> getById(@PathVariable("product_id") Long product_id)
     {
-        return productServiceInterface.finProductById(product_id);
+        return productServiceInterface.find(product_id);
     }
     @DeleteMapping("/{product_id}")
-    private void delete(@PathVariable("product_id") Long product_id)
-    {
-        productServiceInterface.deleteProductById(product_id);
+    private ResponseEntity<String> delete(@PathVariable("product_id") Long product_id) throws Exception {
+        try {
+
+            productServiceInterface.delete(product_id);
+            return new ResponseEntity<>("resource deleted successfully", HttpStatus.ACCEPTED);
+
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
     @PostMapping("/product")
-    private ProductDTO save(@RequestBody ProductDTO productDTO)
-    {
-        productServiceInterface.addProduct(productDTO);
+    private ProductDTO save(@RequestBody ProductDTO productDTO) throws Exception {
+        productServiceInterface.add(productDTO);
         return productDTO;
+    }
+
+    @PutMapping("/{product}")
+    public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO productDTO) {
+        try {
+            return new ResponseEntity<>(productServiceInterface.update(productDTO), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage());
+        }
     }
 
 }
