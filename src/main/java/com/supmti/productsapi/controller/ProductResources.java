@@ -3,6 +3,7 @@ package com.supmti.productsapi.controller;
 
 import com.supmti.productsapi.entity.Product;
 import com.supmti.productsapi.dto.ProductDTO;
+import com.supmti.productsapi.service.api.AuthServiceInterface;
 import com.supmti.productsapi.service.api.ProductServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class ProductResources {
     @Autowired
     ProductServiceInterface productServiceInterface;
 
+    @Autowired
+    AuthServiceInterface authServiceInterface;
+
     @GetMapping(value = "/hello")
     public ResponseEntity helloWorld() throws Exception {
 
@@ -29,9 +33,13 @@ public class ProductResources {
 
 
     @GetMapping()
-    public ResponseEntity<List<ProductDTO>> get() {
+    public ResponseEntity<List<ProductDTO>> get(@RequestHeader("login") String login,
+                                                @RequestHeader("password") String password)
+    {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.getAll());
+            return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.getAll());
+
+
 
     }
 
@@ -57,9 +65,19 @@ public class ProductResources {
 
 
     @PostMapping("/product")
-    private ProductDTO save(@RequestBody ProductDTO productDTO) throws Exception {
-        productServiceInterface.add(productDTO);
-        return productDTO;
+    private ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO,
+                                            @RequestHeader("login") String login,
+                                            @RequestHeader("password") String password)
+                                                throws Exception {
+
+        if(authServiceInterface.authUser(login,password))
+        {
+            productServiceInterface.add(productDTO,login,password);
+        }
+       else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 
 

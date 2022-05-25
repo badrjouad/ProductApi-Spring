@@ -11,7 +11,9 @@ public interface ProductServiceInterface {
     List<ProductDTO> getAll();
     Optional<Product> find(Long id);
     void delete(Long id) throws Exception;
-    ProductDTO add(ProductDTO productDTO) throws Exception;
+
+    ProductDTO add(ProductDTO productDTO, String Login, String password) throws Exception;
+
     ProductDTO update(ProductDTO productDTO) throws Exception;
 
 
