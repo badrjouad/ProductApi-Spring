@@ -10,25 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Mapper(withIoC = IoC.SPRING, withIgnoreMissing = IgnoreMissing.ALL, withIgnoreNullValue = true)
-public abstract class  ProductMapper {
+public interface   ProductMapper {
 
-    public abstract Product asProduct(ProductDTO productDTO);
-    public abstract ProductDTO asProductDTO(Product product);
-
-
-    public List<ProductDTO> asProductDTO(List<Product> products) {
-
-        if (products == null)
-        {
-            return null;
-        }
-
-        Product[] ArrayProduct = products.toArray(new Product[0]);
-
-        ProductDTO[] ArrayProductDTO = Arrays.stream(ArrayProduct).map(this::asProductDTO).toArray(ProductDTO[]::new);
+     Product asProduct(ProductDTO productDTO);
+     ProductDTO asProductDTO(Product product);
 
 
-
-        return Arrays.asList(ArrayProductDTO);
-    };
+     List<ProductDTO> asProductDTO(List<Product> products) ;
 }

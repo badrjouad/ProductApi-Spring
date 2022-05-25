@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ProductServiceInterface {
 
-    List<ProductDTO> get();
+    List<ProductDTO> getAll();
     Optional<Product> find(Long id);
     void delete(Long id) throws Exception;
     ProductDTO add(ProductDTO productDTO) throws Exception;

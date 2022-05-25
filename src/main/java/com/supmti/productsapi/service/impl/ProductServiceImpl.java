@@ -18,14 +18,13 @@ public class ProductServiceImpl implements ProductServiceInterface {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    ProductMapper productMapper ;
+
 
     @Override
-    public List<ProductDTO> get() {
+    public List<ProductDTO> getAll() {
 
-
-        ProductMapper productMapper = Selma.builder(ProductMapper.class).build();
-
-        // as product DTO list
         return  productMapper.asProductDTO(productRepository.findAll());
 
     }
@@ -47,11 +46,7 @@ public class ProductServiceImpl implements ProductServiceInterface {
 
     @Override
     public ProductDTO add(ProductDTO productDTO) throws Exception {
-        
 
-        ProductMapper productMapper = Selma.builder(ProductMapper.class).build();
-
-        // as product DTO object
         Product product = productMapper.asProduct(productDTO);
 
         return  productMapper.asProductDTO(productRepository.saveAndFlush(product));
@@ -60,9 +55,6 @@ public class ProductServiceImpl implements ProductServiceInterface {
     @Override
     public ProductDTO update(ProductDTO productDTO) throws Exception {
 
-        ProductMapper productMapper = Selma.builder(ProductMapper.class).build();
-
-        // as product DTO object
         Product product = productMapper.asProduct(productDTO);
 
 

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/products")
 public class ProductResources {
 
     @Autowired
@@ -29,9 +29,9 @@ public class ProductResources {
 
 
     @GetMapping()
-    public ResponseEntity<List<ProductDTO>> get() throws Exception {
+    public ResponseEntity<List<ProductDTO>> get() {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.get());
+        return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.getAll());
 
     }
 
@@ -40,6 +40,8 @@ public class ProductResources {
     {
         return productServiceInterface.find(product_id);
     }
+
+
     @DeleteMapping("/{product_id}")
     private ResponseEntity<String> delete(@PathVariable("product_id") Long product_id) throws Exception {
         try {
@@ -51,11 +53,16 @@ public class ProductResources {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
+
+
+
     @PostMapping("/product")
     private ProductDTO save(@RequestBody ProductDTO productDTO) throws Exception {
         productServiceInterface.add(productDTO);
         return productDTO;
     }
+
+
 
     @PutMapping("/{product}")
     public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO productDTO) {
