@@ -51,7 +51,7 @@ public class ProductResources {
 
 
     @DeleteMapping("/{product_id}")
-    private ResponseEntity<String> delete(@PathVariable("product_id") Long product_id) throws Exception {
+    private ResponseEntity<String> delete(@PathVariable("product_id") Long product_id)  {
         try {
 
             productServiceInterface.delete(product_id);
@@ -65,18 +65,10 @@ public class ProductResources {
 
 
     @PostMapping("/product")
-    private ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO,
-                                            @RequestHeader("login") String login,
-                                            @RequestHeader("password") String password)
-                                                throws Exception {
+    private ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO)
+                                                 {
 
-        if(authServiceInterface.authUser(login,password))
-        {
-            productServiceInterface.add(productDTO,login,password);
-        }
-       else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        productServiceInterface.add(productDTO);
         return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 

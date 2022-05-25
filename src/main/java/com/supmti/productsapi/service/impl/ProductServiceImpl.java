@@ -44,17 +44,11 @@ public class ProductServiceImpl implements ProductServiceInterface {
     }
 
     @Override
-    public ProductDTO add(ProductDTO productDTO, String Login, String password) throws Exception {
+    public ProductDTO add(ProductDTO productDTO) {
 
         Product product = productMapper.asProduct(productDTO);
 
-
-            return  productMapper.asProductDTO(productRepository.saveAndFlush(product));
-
-
-
-
-
+        return  productMapper.asProductDTO(productRepository.saveAndFlush(product));
     }
 
     @Override
