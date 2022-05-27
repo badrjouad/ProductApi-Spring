@@ -33,11 +33,10 @@ public class ProductResources {
 
 
     @GetMapping()
-    public ResponseEntity<List<ProductDTO>> get(@RequestHeader("login") String login,
-                                                @RequestHeader("password") String password)
+    public ResponseEntity<List<ProductDTO>> get()
     {
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(productServiceInterface.getAll());
+            return ResponseEntity.status(HttpStatus.OK).body(productServiceInterface.getAll());
 
 
 
@@ -65,11 +64,10 @@ public class ProductResources {
 
 
     @PostMapping("/product")
-    private ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO)
+    private ProductDTO save(@RequestBody ProductDTO productDTO)
                                                  {
-
         productServiceInterface.add(productDTO);
-        return new ResponseEntity<>(productDTO, HttpStatus.OK);
+        return  productDTO;
     }
 
 
