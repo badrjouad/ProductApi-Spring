@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @Component
-public class AuthenticationFilter extends OncePerRequestFilter {
-
+public class AuthenticationFilter /*extends OncePerRequestFilter*/ {
+/*
     @Autowired
     AuthServiceInterface authServiceInterface;
 
@@ -41,5 +41,5 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         String path = request.getRequestURI();
         return "api/products/product".equals(path);
     }
-
+*/
 }
